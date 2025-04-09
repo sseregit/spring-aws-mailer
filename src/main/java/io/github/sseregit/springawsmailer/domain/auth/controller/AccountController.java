@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.sseregit.springawsmailer.domain.auth.model.request.SendOTPRequest;
 import io.github.sseregit.springawsmailer.domain.auth.model.response.SendOTPResponse;
+import io.github.sseregit.springawsmailer.domain.auth.service.OTPService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -18,12 +19,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class AccountController {
 
+	private final OTPService otpService;
+
 	@Operation(
 		summary = "Email OTP 전송",
 		description = "Email에 OTP를 전송한다."
 	)
 	@GetMapping("/make-user/{email}")
 	SendOTPResponse sendOTP(@RequestBody @Valid SendOTPRequest request) {
-		return null;
+		return otpService.sendOTP(request);
 	}
 }
