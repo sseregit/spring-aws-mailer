@@ -17,8 +17,35 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    gsonVersion = '2.12.1'
+
+    mapstructLombokVersion = '0.2.0'
+
+    springCloudAwsSesVersion = '3.3.0'
+    springCloudAwsSecretsManagerConfigVersion = '2.4.4'
+
+    springOpenapiVersion = '2.8.6'
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${mapstructLombokVersion}"
+
+    // aws
+    implementation "io.awspring.cloud:spring-cloud-aws-ses:${springCloudAwsSesVersion}"
+    implementation "io.awspring.cloud:spring-cloud-starter-aws-secrets-manager-config:${springCloudAwsSecretsManagerConfigVersion}"
+
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springOpenapiVersion}"
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
