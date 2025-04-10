@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 
 @Schema(description = "OTP 전송 요청")
 public record SendOTPRequest(
-	@Schema(description = "이메일")
-	@NotBlank
-	String email
+    @Schema(description = "이메일")
+    @NotBlank
+    String email
 ) {
 
 }
